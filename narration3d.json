@@ -1,0 +1,13 @@
+{
+  "fps": 30,
+  "pad": 0.45,
+  "minSeconds": 4.0,
+  "lengthScale": 1.0,
+  "scenes": [
+    { "id": "01-hook", "text": "अगर आपका दिमाग़ कंप्यूटर में चला जाए, तो क्या आप अमर हो जाएँगे?", "caption": "Brain to computer. Immortal?" },
+    { "id": "02-upload", "text": "माइंड अपलोडिंग का मतलब है, हर न्यूरॉन को सिलिकॉन पर चलाना।", "caption": "Copy every neuron" },
+    { "id": "03-scale", "text": "पर दिमाग़ में छियासी अरब न्यूरॉन हैं। हम एक मक्खी तक नहीं उतार पाए।", "caption": "86 billion, and we stall at a fly" },
+    { "id": "04-body", "text": "दूसरा रास्ता है दिमाग़ को नए शरीर में डालना। पर ये सर्जरी जानलेवा है।", "caption": "Body swap is not close either" },
+    { "id": "05-copy", "text": "और सबसे बड़ा सवाल। कॉपी आप होगी, या सिर्फ़ आपकी नकल?", "caption": "Is the copy you?" }
+  ]
+}

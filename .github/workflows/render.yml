@@ -1,4 +1,4 @@
-name: render
+name: render3d
 on:
   workflow_dispatch:
   push:
@@ -8,15 +8,18 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: ffmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-      - name: install piper and voice
+      - name: tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg blender
+          blender --version | head -2
+      - name: voice
         run: |
           mkdir -p .piper && cd .piper
           curl -sSL -o piper.tar.gz https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_linux_x86_64.tar.gz
@@ -24,25 +27,26 @@ jobs:
           B=https://huggingface.co/rhasspy/piper-voices/resolve/main/hi/hi_IN/pratham/medium
           curl -sSL -o hi_IN-pratham-medium.onnx "$B/hi_IN-pratham-medium.onnx"
           curl -sSL -o hi_IN-pratham-medium.onnx.json "$B/hi_IN-pratham-medium.onnx.json"
-          test -s hi_IN-pratham-medium.onnx && ls -la
-      - name: narration
-        run: python3 scripts/hinglish_voice.py --script narration.json --out public/audio/
+          cd ..
+          python3 scripts/hinglish_voice.py --script narration3d.json --out public/audio3d/ --manifest src/manifest3d.json
+      - name: blender
+        run: blender -b --factory-startup -P scripts/build3d.py -- src/manifest3d.json public/frames
       - name: deps
         run: npm install --no-audit --no-fund
       - name: render
         run: |
           npx remotion browser ensure || true
-          npx remotion render src/index.ts Video out/video.mp4 --concurrency=2
+          npx remotion render src/index3d.ts Video3D out/video3d.mp4 --concurrency=2
       - name: probe
         if: always()
         run: |
-          ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of default=nw=1 out/video.mp4 || true
-          ffprobe -v error -select_streams a:0 -show_entries stream=codec_name,sample_rate,channels -of default=nw=1 out/video.mp4 || true
-          ffprobe -v error -show_entries format=duration -of default=nw=1 out/video.mp4 || true
-          ffmpeg -hide_banner -i out/video.mp4 -af volumedetect -f null - 2>&1 | grep -E "mean_volume|max_volume" || true
+          ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of default=nw=1 out/video3d.mp4 || true
+          ffprobe -v error -select_streams a:0 -show_entries stream=codec_name,sample_rate -of default=nw=1 out/video3d.mp4 || true
+          ffprobe -v error -show_entries format=duration -of default=nw=1 out/video3d.mp4 || true
+          ffmpeg -hide_banner -i out/video3d.mp4 -af volumedetect -f null - 2>&1 | grep -E "mean_volume|max_volume" || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: video
-          path: out/video.mp4
+          name: video3d
+          path: out/video3d.mp4
           if-no-files-found: warn
