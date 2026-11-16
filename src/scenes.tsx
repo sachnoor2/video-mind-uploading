@@ -197,7 +197,7 @@ const Resolve: React.FC<P> = ({ dur, caption }) => {
           color: AMBER, fontSize: 24, fontWeight: 800,
         }}>YOU</div>
         <div style={{
-          position: "absolute", left: 40 + away, top: 60, width: 150, height: 150, borderRadius: "50%",
+          position: "absolute", left: 215 + away * 0.55, top: 60, width: 150, height: 150, borderRadius: "50%",
           border: `4px solid ${TEAL}`, display: "flex", alignItems: "center", justifyContent: "center",
           color: TEAL, fontSize: 22, fontWeight: 800,
         }}>COPY</div>
