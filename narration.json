@@ -1,0 +1,16 @@
+{
+  "fps": 30,
+  "pad": 0.7,
+  "minSeconds": 4.0,
+  "lengthScale": 1.0,
+  "scenes": [
+    { "id": "01-hook", "text": "अगर आपका पूरा दिमाग़ एक कंप्यूटर में चला जाए, तो क्या आप अमर हो जाएँगे?", "caption": "Brain to computer. Immortal?" },
+    { "id": "02-setup", "text": "इस आइडिया का नाम है माइंड अपलोडिंग। दिमाग़ की हर न्यूरॉन को कॉपी करके सिलिकॉन पर चलाना।", "caption": "It is called mind uploading" },
+    { "id": "03-numbers", "text": "आपके दिमाग़ में लगभग छियासी अरब न्यूरॉन हैं। और हर न्यूरॉन के हज़ारों कनेक्शन।", "caption": "86 billion neurons" },
+    { "id": "04-problem", "text": "अभी तक हम एक मक्खी का पूरा दिमाग़ भी नहीं उतार पाए हैं।", "caption": "We cannot even map a fly" },
+    { "id": "05-swap", "text": "दूसरा रास्ता है दिमाग़ को नए शरीर में डालना। पर ये सर्जरी आज भी जानलेवा है।", "caption": "Body swap is not close either" },
+    { "id": "06-copy", "text": "और सबसे बड़ा सवाल ये है। वो कॉपी आप होगी, या सिर्फ़ आपकी नकल?", "caption": "Is the copy you?" },
+    { "id": "07-resolve", "text": "आपकी कॉपी आपके बाद ज़रूर जी सकती है। लेकिन आप वो नहीं होंगे।", "caption": "The copy lives. You do not." },
+    { "id": "08-recap", "text": "तो अमरता शायद कोई डिवाइस नहीं है। ये एक नया सवाल है।", "caption": "Immortality is a new question" }
+  ]
+}
